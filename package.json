@@ -1,0 +1,29 @@
+{
+  "name": "chat-bot",
+  "version": "1.0.0",
+  "description": "chat-bot-res",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"nodemon --exec babel-node src/server.js"
+  },
+  "keywords": [
+    "chat",
+    "bot",
+    "res"
+  ],
+  "author": "LVH",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/node": "^7.20.7",
+    "@babel/preset-env": "^7.21.5",
+    "nodemon": "^2.0.22"
+  }
+}
