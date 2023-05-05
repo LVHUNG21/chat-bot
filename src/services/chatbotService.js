@@ -340,4 +340,5 @@ await handleSendMainMenu(sender_psid);
         handleSendMainMenu: handleSendMainMenu,
         handleSendLunchMenu: handleSendLunchMenu,
         handleSendDinnerMenu: handleSendDinnerMenu,
+        handleBackToMainMenu:handleBackToMainMenu
     }
