@@ -215,7 +215,7 @@ let getLunchMenuTemplate=()=>{
                     {
                     "title": "Mon trang mien",
                     "subtitle": "Nha hang co nhieu mon trang mien hap dan .",
-                    "image_url": IMAGE_MAIN_MENU_2,
+                    "image_url": IMAGE_VIEW_APPETIZERS,
                     "buttons": [
                         {
                             //appertizers
@@ -228,7 +228,7 @@ let getLunchMenuTemplate=()=>{
                    {
                     "title": "ca bay mau",
                     "subtitle": "ca nuoc ngot va ca nuoc man",
-                    "image_url": IMAGE_MAIN_MENU_3,
+                    "image_url": IMAGE_VIEW_FISH,
                     "buttons": [
                         {
                             "type": "postback",
@@ -240,7 +240,7 @@ let getLunchMenuTemplate=()=>{
                    {
                     "title": "Thit hun khoi",
                     "subtitle": "dam bao chat luong",
-                    "image_url": IMAGE_MAIN_MENU_4,
+                    "image_url": IMAGE_VIEW_MEAT,
                     "buttons": [
                         {
                             "type": "postback",
