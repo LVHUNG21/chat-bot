@@ -184,7 +184,7 @@ let handlePostback = async (sender_psid, received_postback) => {
             break;
 
         case 'VIEW_APPETIZERS':
-            await chatBotService.handleDetailViewAppetizers(sender_psid)
+            await chatBotService.handleDetailViewAppetizer(sender_psid)
         case 'VIEW_FISH':
             await chatBotService.handleDetailViewFish(sender_psid)
         case 'VIEW_MEAT':
