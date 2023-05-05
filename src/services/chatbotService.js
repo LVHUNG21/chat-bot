@@ -2,13 +2,14 @@ require('dotenv').config();
 import { response } from "express";
 import request from "request";
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
-const IMAGE_GET_STARTED='https://tse2.mm.bing.net/th?id=OIP.gKRH-WORVtuTkEQXfzJxeAHaE8&pid=Api&P=0'
-const IMAGE_MAIN_MENU_2='http://bit.ly/eric-bot-2'
-const IMAGE_MAIN_MENU_3='http://bit.ly/eric-bot-3'
-const IMAGE_MAIN_MENU_4='http://bit.ly/eric-bot-3'
-const IMAGE_VIEW_APPETIZERS='http://bit.ly/eric-bot-5'
-const IMAGE_VIEW_FISH='http://bit.ly/eric-bot-6'
-const IMAGE_VIEW_MEAT='http://bit.ly/eric-bot-7'
+const IMAGE_GET_STARTED = 'https://tse2.mm.bing.net/th?id=OIP.gKRH-WORVtuTkEQXfzJxeAHaE8&pid=Api&P=0'
+const IMAGE_MAIN_MENU_2 = 'https://bit.ly/eric-bot-2'
+const IMAGE_MAIN_MENU_3 = 'https://bit.ly/eric-bot-3'
+const IMAGE_MAIN_MENU_4 = 'https://bit.ly/eric-bot-3'
+const IMAGE_VIEW_APPETIZERS = 'http://bit.ly/eric-bot-5'
+const IMAGE_VIEW_FISH = 'http://bit.ly/eric-bot-6'
+const IMAGE_BACK_MAIN_MENU = 'http://bit.ly/eric-bot-8'
+const IMAGE_VIEW_MEAT = 'http://bit.ly/eric-bot-7'
 let callSendAPI = (sender_psid, response) => {
     //sender_psid laf nguoi nhan tin nhan 
     // Construct the message body
@@ -52,7 +53,7 @@ let getUserName = (sender_psid) => {
                 reject(err)
             }
         })
-            
+
     })
 
 }
@@ -61,7 +62,7 @@ let handleGetStarted = (sender_psid) => {
         try {
             let username = await getUserName(sender_psid);
             let response1 = { "text": `OK.XIN CHAO ${username}  DEN VOI NHA HANG` }
-            let response2=sendGetstartedTemplate();
+            let response2 = sendGetstartedTemplate();
             //send text message
             await callSendAPI(sender_psid, response1)
             // send generic message
@@ -73,44 +74,44 @@ let handleGetStarted = (sender_psid) => {
         }
     })
 }
-let sendGetstartedTemplate=()=>{
-    let response={  
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": [{
-                        "title": "Is this the right picture?",
-                        "subtitle": "Tap a button to answer.",
-                        "image_url": IMAGE_GET_STARTED,
-                        "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "MENU CHINH",
-                                "payload": "MAIN_MENU",
-                            },
-                            {
-                                "type": "postback",
-                                "title": "No!",
-                                "payload": "DAT_BAN",
-                            },
-                            {
-                                "type": "postback",
-                                "title": "HUONG DAN SU DUNG CHAT BOT",
-                                "payload": "HUONG_DAN",
-                            }
-                        ],
-                    }]
-                }
+let sendGetstartedTemplate = () => {
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [{
+                    "title": "Is this the right picture?",
+                    "subtitle": "Tap a button to answer.",
+                    "image_url": IMAGE_GET_STARTED,
+                    "buttons": [
+                        {
+                            "type": "postback",
+                            "title": "MENU CHINH",
+                            "payload": "MAIN_MENU",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "No!",
+                            "payload": "DAT_BAN",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "HUONG DAN SU DUNG CHAT BOT",
+                            "payload": "HUONG_DAN",
+                        }
+                    ],
+                }]
             }
+        }
     }
 
-    return  response;
+    return response;
 }
-let handleSendMainMenu=(sender_psid)=>{
+let handleSendMainMenu = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let response1=getMainMenuTemplate();
+            let response1 = getMainMenuTemplate();
             //send text message
             await callSendAPI(sender_psid, response1)
             // send generic messagea
@@ -120,14 +121,14 @@ let handleSendMainMenu=(sender_psid)=>{
         }
     })
 }
-let getMainMenuTemplate=()=>{
-     let response={  
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": [
-                        {
+let getMainMenuTemplate = () => {
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
                         "title": "Menu cua nha hang",
                         "subtitle": "chung toi han hanh mang den dich vu.",
                         "image_url": IMAGE_MAIN_MENU_2,
@@ -149,7 +150,7 @@ let getMainMenuTemplate=()=>{
                             }
                         ],
                     },
-                       {
+                    {
                         "title": "Gio mo cua",
                         "subtitle": "T2-t6 10am-11am ",
                         "image_url": IMAGE_MAIN_MENU_3,
@@ -161,7 +162,7 @@ let getMainMenuTemplate=()=>{
                             },
                         ],
                     },
-                       {
+                    {
                         "title": "KHONG GIAN NHA HANG",
                         "subtitle": "restaurant accommodates up to 300 seated",
                         "image_url": IMAGE_MAIN_MENU_4,
@@ -174,16 +175,16 @@ let getMainMenuTemplate=()=>{
                         ],
                     }
                 ]
-                }
             }
+        }
     }
 
-    return  response;
+    return response;
 }
-let handleSendLunchMenu =(sender_psid)=>{
+let handleSendLunchMenu = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let response1=getLunchMenuTemplate();
+            let response1 = getLunchMenuTemplate();
             //send text message
             await callSendAPI(sender_psid, response1)
             // send generic messagea
@@ -193,10 +194,10 @@ let handleSendLunchMenu =(sender_psid)=>{
         }
     })
 }
-let handleSendDinnerMenu=(sender_psid)=>{
+let handleSendDinnerMenu = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let response1=getDinnerMenuTemplate();
+            let response1 = getDinnerMenuTemplate();
             //send text message
             await callSendAPI(sender_psid, response1)
             // send generic messagea
@@ -206,119 +207,132 @@ let handleSendDinnerMenu=(sender_psid)=>{
         }
     })
 }
-let getLunchMenuTemplate=()=>{
-    let response={  
+let getLunchMenuTemplate = () => {
+    let response = {
         "attachment": {
             "type": "template",
             "payload": {
                 "template_type": "generic",
                 "elements": [
                     {
-                    "title": "Mon trang mien",
-                    "subtitle": "Nha hang co nhieu mon trang mien hap dan .",
-                    "image_url": IMAGE_VIEW_APPETIZERS,
-                    "buttons": [
-                        {
-                            //appertizers
-                            "type": "postback",
-                            "title": "Xem Chi Tiet",
-                            "payload": "VIEW_APPETIZERS",
-                        },
-                    ],
-                },
-                   {
-                    "title": "ca bay mau",
-                    "subtitle": "ca nuoc ngot va ca nuoc man",
-                    "image_url": IMAGE_VIEW_FISH,
-                    "buttons": [
-                        {
-                            "type": "postback",
-                            "title": "Xem chi tiet",
-                            "payload": "VIEW_FISH",
-                        },
-                    ],
-                },
-                   {
-                    "title": "Thit hun khoi",
-                    "subtitle": "dam bao chat luong",
-                    "image_url": IMAGE_VIEW_MEAT,
-                    "buttons": [
-                        {
-                            "type": "postback",
-                            "title": "CHI TIET",
-                            "payload": "VIEW_MEAT",
-                        },
-                    ],
-                }
-            ]
+                        "title": "Mon trang mien",
+                        "subtitle": "Nha hang co nhieu mon trang mien hap dan .",
+                        "image_url": IMAGE_VIEW_APPETIZERS,
+                        "buttons": [
+                            {
+                                //appertizers
+                                "type": "postback",
+                                "title": "Xem Chi Tiet",
+                                "payload": "VIEW_APPETIZERS",
+                            },
+                        ],
+                    },
+                    {
+                        "title": "ca bay mau",
+                        "subtitle": "ca nuoc ngot va ca nuoc man",
+                        "image_url": IMAGE_VIEW_FISH,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Xem chi tiet",
+                                "payload": "VIEW_FISH",
+                            },
+                        ],
+                    },
+                    {
+                        "title": "Thit hun khoi",
+                        "subtitle": "dam bao chat luong",
+                        "image_url": IMAGE_VIEW_MEAT,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "CHI TIET",
+                                "payload": "VIEW_MEAT",
+                            },
+                            {
+                                "title": "Quay tro lai",
+                                "subtitle": "QUAY TRO LAI MENU CHINH",
+                                "image_url": IMAGE_BACK_MAIN_MENU,
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "Quay tro lai",
+                                        "payload": "BACK_TO_MAIN_MENU",
+                                    },
+                                ],
+                            }
+                        ]
+                    }
+
+                ]
             }
         }
-}
-return response
+    }
+      return response
 
-}
-let getDinnerMenuTemplate=()=>{
-    let response={  
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [
-                    {
-                    "title": "Menu cua nha hang",
-                    "subtitle": "chung toi han hanh mang den dich vu.",
-                    "image_url": IMAGE_MAIN_MENU_2,
-                    "buttons": [
+    }
+    let getDinnerMenuTemplate = () => {
+        let response = {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": [
                         {
-                            "type": "postback",
-                            "title": "Bua trua",
-                            "payload": "LUNCH_MENU",
+                            "title": "Menu cua nha hang",
+                            "subtitle": "chung toi han hanh mang den dich vu.",
+                            "image_url": IMAGE_MAIN_MENU_2,
+                            "buttons": [
+                                {
+                                    "type": "postback",
+                                    "title": "Bua trua",
+                                    "payload": "LUNCH_MENU",
+                                },
+                                {
+                                    "type": "postback",
+                                    "title": "BUA TOI",
+                                    "payload": "DINNER_MENU"
+                                },
+                                {
+                                    "type": "postback",
+                                    "title": "HUONG DAN SU DUNG CHAT BOT",
+                                    "payload": "HUONG_DAN",
+                                }
+                            ],
                         },
                         {
-                            "type": "postback",
-                            "title": "BUA TOI",
-                            "payload": "DINNER_MENU"
+                            "title": "Gio mo cua",
+                            "subtitle": "T2-t6 10am-11am ",
+                            "image_url": IMAGE_MAIN_MENU_3,
+                            "buttons": [
+                                {
+                                    "type": "postback",
+                                    "title": "Dat ban",
+                                    "payload": "RESERVE_TABLE",
+                                },
+                            ],
                         },
                         {
-                            "type": "postback",
-                            "title": "HUONG DAN SU DUNG CHAT BOT",
-                            "payload": "HUONG_DAN",
+                            "title": "KHONG GIAN NHA HANG",
+                            "subtitle": "restaurant accommodates up to 300 seated",
+                            "image_url": IMAGE_MAIN_MENU_4,
+                            "buttons": [
+                                {
+                                    "type": "postback",
+                                    "title": "CHI TIET",
+                                    "payload": "SHOW_ROOM",
+                                },
+                            ],
                         }
-                    ],
-                },
-                   {
-                    "title": "Gio mo cua",
-                    "subtitle": "T2-t6 10am-11am ",
-                    "image_url": IMAGE_MAIN_MENU_3,
-                    "buttons": [
-                        {
-                            "type": "postback",
-                            "title": "Dat ban",
-                            "payload": "RESERVE_TABLE",
-                        },
-                    ],
-                },
-                   {
-                    "title": "KHONG GIAN NHA HANG",
-                    "subtitle": "restaurant accommodates up to 300 seated",
-                    "image_url": IMAGE_MAIN_MENU_4,
-                    "buttons": [
-                        {
-                            "type": "postback",
-                            "title": "CHI TIET",
-                            "payload": "SHOW_ROOM",
-                        },
-                    ],
+                    ]
                 }
-            ]
             }
         }
-}
-return response
-}
-module.exports = {
-    handleGetStarted: handleGetStarted,
-    handleSendMainMenu:handleSendMainMenu,
-    handleSendLunchMenu:handleSendLunchMenu,
-    handleSendDinnerMenu:handleSendDinnerMenu,
-}
+        return response
+    }
+    module.exports = {
+        handleGetStarted: handleGetStarted,
+        handleSendMainMenu: handleSendMainMenu,
+        handleSendLunchMenu: handleSendLunchMenu,
+        handleSendDinnerMenu: handleSendDinnerMenu,
+    }
