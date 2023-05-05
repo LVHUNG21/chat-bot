@@ -101,7 +101,7 @@ let sendGetstartedTemplate=()=>{
 
     return  response;
 }
-let handleSendMainMenu=()=>{
+let handleSendMainMenu=(sender_psid)=>{
     return new Promise(async (resolve, reject) => {
         try {
             let response1=getMainMenuTemplate();
