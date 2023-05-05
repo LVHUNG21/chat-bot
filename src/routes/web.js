@@ -7,8 +7,14 @@ let initWebRoutes=(app)=>{
     )
     router.post('/webhook',HomeController.postWebhook)
     router.get('/webhook',HomeController.getWebhook)
+
+    //setup get started button , whitelisted domain
     router.post('/setup-profile',HomeController.setupProfile)
-    router.post('/sendAllCustomer',HomeController.broadcastMessage)
+
+    //setup persistent menu
+    router.post('/setup-persistent-menu',HomeController.setupPersistentMenu)
+
+    // router.post('/sendAllCustomer',HomeController.broadcastMessage)
     return app.use('/',router);
 }
 module.exports=initWebRoutes;

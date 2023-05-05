@@ -80,13 +80,18 @@ let sendGetstartedTemplate=()=>{
                         "buttons": [
                             {
                                 "type": "postback",
-                                "title": "Yes!",
-                                "payload": "yes",
+                                "title": "MENU CHINH",
+                                "payload": "MAIN_MENU",
                             },
                             {
                                 "type": "postback",
                                 "title": "No!",
-                                "payload": "no",
+                                "payload": "DAT_BAN",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "HUONG DAN SU DUNG CHAT BOT",
+                                "payload": "HUONG_DAN",
                             }
                         ],
                     }]

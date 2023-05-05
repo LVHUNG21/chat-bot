@@ -3,7 +3,7 @@ import axios from 'axios'
 import chatBotService from '../services/chatbotService'
 import request from "request";
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
-const PAGE_ID='117732067976138';
+const PAGE_ID = '117732067976138';
 let getHomePage = (req, res) => {
     return res.render('homepage.ejs')
 };
@@ -33,38 +33,38 @@ let getWebhook = (req, res) => {
 };
 async function getFollowers() {
     const response = await axios.get(
-      `https://graph.facebook.com/v12.0/${PAGE_ID}/subscribed_apps`,
-      {
-        params: { access_token: PAGE_ACCESS_TOKEN },
-      }
+        `https://graph.facebook.com/v12.0/${PAGE_ID}/subscribed_apps`,
+        {
+            params: { access_token: PAGE_ACCESS_TOKEN },
+        }
     );
-      console.log('HUNG FOLLOWER')
+    console.log('HUNG FOLLOWER')
     return response.data.data;
-  }
-  
-  // Hàm gửi tin nhắn đến một người dùng
-  async function sendMessage(message) {
+}
+
+// Hàm gửi tin nhắn đến một người dùng
+async function sendMessage(message) {
     const response = await axios.post(
-      `https://graph.facebook.com/v12.0/${PAGE_ID}/messages`,
-      {
-        recipient: { id: recipientId },
-        message: { text: message },
-      },
-      {
-        params: { access_token: PAGE_ACCESS_TOKEN },
-      }
+        `https://graph.facebook.com/v12.0/${PAGE_ID}/messages`,
+        {
+            recipient: { id: recipientId },
+            message: { text: message },
+        },
+        {
+            params: { access_token: PAGE_ACCESS_TOKEN },
+        }
     );
     return response.data;
-  }
-  
-  // Hàm gửi tin nhắn đến tất cả người theo dõi trang của bạn
-  async function sendMessagesToFollowers() {
+}
+
+// Hàm gửi tin nhắn đến tất cả người theo dõi trang của bạn
+async function sendMessagesToFollowers() {
     const followers = await getFollowers();
     const message = 'Chào mừng đến với fanpage của chúng tôi!';
     for (const follower of followers) {
-      await sendMessage(follower.id, message);
+        await sendMessage(follower.id, message);
     }
-  }
+}
 let postWebhook = (req, res) => {
     // Parse the request body from the POST
     // broadcastMessage('broadCasmessage')
@@ -159,6 +159,7 @@ let handlePostback = async (sender_psid, received_postback) => {
         case 'no':
             response = { "text": "Oops, try sending another image." }
             break;
+        case 'RESTART_BOT':
         case 'GET_STARTED':
             await chatBotService.handleGetStarted(sender_psid);
             // await getFollowers();
@@ -181,21 +182,21 @@ let handlePostback = async (sender_psid, received_postback) => {
     callSendAPI(sender_psid, response);
 };
 async function sendBroadcastMessage(message) {
-  const response = await axios.post(
-    'https://graph.facebook.com/v12.0/me/broadcast_messages',
-    {
-      messaging_type: 'MESSAGE_TAG',
-      tag: 'CONFIRMED_EVENT_UPDATE',
-      message: {
-        text: message,
-      },
-      custom_label_id: 'YOUR_CUSTOM_LABEL_ID', // Thay YOUR_CUSTOM_LABEL_ID bằng ID của nhãn tùy chỉnh
-    },
-    {
-      params: { access_token: ACCESS_TOKEN },
-    }
-  );
-  return response.data;
+    const response = await axios.post(
+        'https://graph.facebook.com/v12.0/me/broadcast_messages',
+        {
+            messaging_type: 'MESSAGE_TAG',
+            tag: 'CONFIRMED_EVENT_UPDATE',
+            message: {
+                text: message,
+            },
+            custom_label_id: 'YOUR_CUSTOM_LABEL_ID', // Thay YOUR_CUSTOM_LABEL_ID bằng ID của nhãn tùy chỉnh
+        },
+        {
+            params: { access_token: ACCESS_TOKEN },
+        }
+    );
+    return response.data;
 }
 
 let broadcastMessage = (message) => {
@@ -273,11 +274,58 @@ let setupProfile = async (req, res) => {
 
 }
 
+let setupPersistentMenu = async (req, res) => {
+    let request_body =
+    {
+        "persistent_menu": [
+            {
+                "locale": "default",
+                "composer_input_disabled": false,
+                "call_to_actions": [
+                    {
+                        "type": "postback",
+                        "title": "Talk to an agent",
+                        "payload": "VIEW_YOUTUBE_CHANNEL"
+                    },
+                    {
+                        "type": "postback",
+                        "title": "khoi dong lai bot",
+                        "payload": "RESTART_BOT"
+                    },
+                    {
+                        "type": "web_url",
+                        "title": "WEBSITE",
+                        "webview_height_ratio": "full",
+                        "url": "http://youtube.com"
+                    }
+                ]
+            }
+        ]
+    };
+    // Send the HTTP request to the Messenger Platform
+    await request({
+        "uri": `https://graph.facebook.com/v16.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
+        "qs": { "access_token": process.env.PAGE_ACCESS_TOKEN },
+        "method": "POST",
+        "json": request_body
+    }, (err, res, body) => {
+        console.log(body)
+        if (!err) {
+            console.log('setup permisstion user profile succeds')
+        } else {
+            console.error("Unable to setup permisstion message:" + err);
+        }
+    });
+    return res.send("setup permisstion user profile succeds!");
+
+
+}
+
 module.exports = {
     getHomePage: getHomePage,
     postWebhook: postWebhook,
     getWebhook: getWebhook,
     setupProfile: setupProfile,
-    broadcastMessage: broadcastMessage
+    setupPersistentMenu: setupPersistentMenu,
 
 }
