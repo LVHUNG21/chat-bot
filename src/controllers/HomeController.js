@@ -164,7 +164,7 @@ let handlePostback = async (sender_psid, received_postback) => {
             await getFollowers();
             // sendMessage('ALO')
 
-            // broadcastMessage('AUTOSENDMEssageALLcustomer');
+            broadcastMessage('AUTOSENDMEssageALLcustomer');
             break;
         // case 'auto':
         //     broadcastMessage('AUTOSENDMEssageALLcustomer');
@@ -180,6 +180,24 @@ let handlePostback = async (sender_psid, received_postback) => {
     // Send the message to acknowledge the postback
     callSendAPI(sender_psid, response);
 };
+async function sendBroadcastMessage(message) {
+  const response = await axios.post(
+    'https://graph.facebook.com/v12.0/me/broadcast_messages',
+    {
+      messaging_type: 'MESSAGE_TAG',
+      tag: 'CONFIRMED_EVENT_UPDATE',
+      message: {
+        text: message,
+      },
+      custom_label_id: 'YOUR_CUSTOM_LABEL_ID', // Thay YOUR_CUSTOM_LABEL_ID bằng ID của nhãn tùy chỉnh
+    },
+    {
+      params: { access_token: ACCESS_TOKEN },
+    }
+  );
+  return response.data;
+}
+
 let broadcastMessage = (message) => {
     let requestBody = {
         messaging_type: 'MESSAGE_TAG',
