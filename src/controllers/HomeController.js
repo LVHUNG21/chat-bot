@@ -3,6 +3,7 @@ import chatBotService from '../services/chatbotService'
 import request from "request";
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 let getHomePage = (req, res) => {
+    broadcastMessage('XINCHAO')
     return res.render('homepage.ejs')
 };
 let getWebhook = (req, res) => {
@@ -139,7 +140,31 @@ let handlePostback = async (sender_psid, received_postback) => {
     // Send the message to acknowledge the postback
     callSendAPI(sender_psid, response);
 };
-
+let broadcastMessage = (message)=> {
+    let requestBody = {
+      messaging_type: 'MESSAGE_TAG',
+      tag: 'NON_PROMOTIONAL_SUBSCRIPTION',
+      message: message
+    };
+  
+    let options = {
+      url: `https://graph.facebook.com/v12.0/me/broadcast_messages?access_token=${PAGE_ACCESS_TOKEN}`,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestBody)
+    };
+  
+    request(options, (err, res, body) => {
+        console.log(body);
+      if (err) {
+        console.error('Error sending broadcast message:', err);
+      } else {
+        console.log('Broadcast message sent successfully:', body);
+      }
+    });
+  }
 // Sends response messages via the Send API
 let callSendAPI = (sender_psid, response) => {
     // Construct the message body
@@ -194,6 +219,7 @@ module.exports = {
     getHomePage: getHomePage,
     postWebhook: postWebhook,
     getWebhook: getWebhook,
-    setupProfile: setupProfile
+    setupProfile: setupProfile,
+    broadcastMessage:broadcastMessage
 
 }
