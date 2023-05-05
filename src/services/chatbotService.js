@@ -9,6 +9,19 @@ const IMAGE_MAIN_MENU_4 = 'https://bit.ly/eric-bot-3'
 const IMAGE_VIEW_APPETIZERS = 'http://bit.ly/eric-bot-5'
 const IMAGE_VIEW_FISH = 'http://bit.ly/eric-bot-6'
 const IMAGE_BACK_MAIN_MENU = 'http://bit.ly/eric-bot-8'
+
+const IMAGE_DETAIL_APPERTIZER_1='http://bit.ly/eric-bot-9'
+const IMAGE_DETAIL_APPERTIZER_2='http://bit.ly/eric-bot-10'
+const IMAGE_DETAIL_APPERTIZER_3='http://bit.ly/eric-bot-11'
+
+const IMAGE_DETAIL_FISH_1='http://bit.ly/eric-bot-12'
+const IMAGE_DETAIL_FISH_2='http://bit.ly/eric-bot-13'
+const IMAGE_DETAIL_FISH_3='http://bit.ly/eric-bot-14'
+
+const IMAGE_DETAIL_MEAT_1='http://bit.ly/eric-bot-15'
+const IMAGE_DETAIL_MEAT_2='http://bit.ly/eric-bot-16'
+const IMAGE_DETAIL_MEAT_3='http://bit.ly/eric-bot-17'
+
 const IMAGE_VIEW_MEAT = 'http://bit.ly/eric-bot-7'
 let callSendAPI = (sender_psid, response) => {
     //sender_psid laf nguoi nhan tin nhan 
@@ -332,7 +345,174 @@ return response
 
 let handleBackToMainMenu = async (sender_psid)=>{
 await handleSendMainMenu(sender_psid);
+}
+let getDetailViewAppetizer  = () => {
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                        "title": "DUA HAU",
+                        "subtitle": "50ndt",
+                        "image_url": IMAGE_DETAIL_APPERTIZER_1,
+                       
+                    },
+                    {
+                        "title": "Xoai",
+                        "subtitle": "10ndt",
+                        "image_url": IMAGE_DETAIL_APPERTIZER_2,
+                      
+                    },
+                    {
+                        "title": "Sau rieng",
+                        "subtitle": "40ndt",
+                        "image_url": IMAGE_DETAIL_APPERTIZER_3,
+                    },
+                     {
+                        "title": "quay tro lai ",
+                        "subtitle": "quay tro lai main menu",
+                        "image_url": IMAGE_DETAIL_APPERTIZER_3,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Back to main menu",
+                                "payload": "BACK_TO_MAIN_MENU",
+                            },
+                        ],
+                    }
+                ]
+            }
+        }
+    }
+    return response
+}
+let handleDetailViewAppetizer= (sender_psid)=>{
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response1 = getDetailViewAppetizer();
+            //send text message
+            await callSendAPI(sender_psid, response1)
+            // send generic messagea
 
+        } catch (e) {
+            reject(e);
+        }
+    })
+
+}
+let getDetailViewFish = () => {
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                        "title": "Ca voi xanh ",
+                        "subtitle": "50ndt",
+                        "image_url": IMAGE_DETAIL_FISH_1,
+                       
+                    },
+                    {
+                        "title": "Ca ro phi",
+                        "subtitle": "10ndt",
+                        "image_url": IMAGE_DETAIL_FISH_2,
+                      
+                    },
+                    {
+                        "title": "Ca loc",
+                        "subtitle": "40ndt",
+                        "image_url": IMAGE_DETAIL_FISH_3,
+                    },
+                     {
+                        "title": "quay tro lai ",
+                        "subtitle": "quay tro lai main menu",
+                        "image_url": IMAGE_DETAIL_APPERTIZER_3,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Back to main menu",
+                                "payload": "BACK_TO_MAIN_MENU",
+                            },
+                        ],
+                    }
+                ]
+            }
+        }
+    }
+    return response
+}
+
+let handleDetailViewFish= (sender_psid)=>{
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response1 = getDetailViewFish();
+            //send text message
+            await callSendAPI(sender_psid, response1)
+            // send generic messagea
+
+        } catch (e) {
+            reject(e);
+        }
+    })
+
+}
+let getDetailViewMeat  = () => {
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                        "title": "thit lon",
+                        "subtitle": "50ndt",
+                        "image_url": IMAGE_DETAIL_MEAT_1,
+                       
+                    },
+                    {
+                        "title": "thit lon luoc",
+                        "subtitle": "10ndt",
+                        "image_url": IMAGE_DETAIL_MEAT_2,
+                      
+                    },
+                    {
+                        "title": "thit lon CN",
+                        "subtitle": "40ndt",
+                        "image_url": IMAGE_DETAIL_MEAT_3,
+                    },
+                     {
+                        "title": "quay tro lai ",
+                        "subtitle": "quay tro lai main menu",
+                        "image_url": IMAGE_DETAIL_APPERTIZER_3,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Back to main menu",
+                                "payload": "BACK_TO_MAIN_MENU",
+                            },
+                        ],
+                    }
+                ]
+            }
+        }
+    }
+    return response
+}
+let handleDetailViewMeat= (sender_psid)=>{
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response1 = getDetailViewMeat();
+            //send text message
+            await callSendAPI(sender_psid, response1)
+            // send generic messagea
+
+        } catch (e) {
+            reject(e);
+        }
+    })
 
 }
     module.exports = {
@@ -340,5 +520,8 @@ await handleSendMainMenu(sender_psid);
         handleSendMainMenu: handleSendMainMenu,
         handleSendLunchMenu: handleSendLunchMenu,
         handleSendDinnerMenu: handleSendDinnerMenu,
-        handleBackToMainMenu:handleBackToMainMenu
+        handleBackToMainMenu:handleBackToMainMenu,
+        handleDetailViewAppetizer:handleDetailViewAppetizer,
+        handleDetailViewFish:handleDetailViewFish,
+        handleDetailViewMeat:handleDetailViewMeat,
     }

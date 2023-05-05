@@ -184,10 +184,16 @@ let handlePostback = async (sender_psid, received_postback) => {
             break;
 
         case 'VIEW_APPETIZERS':
+            await chatBotService.handleViewDetailViewAppetizers(sender_psid)
         case 'VIEW_FISH':
+            await chatBotService.handleViewDetailViewFish(sender_psid)
         case 'VIEW_MEAT':
+            await chatBotService.handleViewDetailViewMeat(sender_psid);
+            break;
         case 'BACK_TO_MAIN_MENU':
             await chatBotService.handleBackToMainMenu(sender_psid);
+            break;
+
         default:
             response = { 'text': `oop ! i don't know response with postback ${payload}` }
 
