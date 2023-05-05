@@ -127,45 +127,47 @@ let handlePostback = async (sender_psid, received_postback) => {
             break;
         case 'GET_STARTED':
             await chatBotService.handleGetStarted(sender_psid);
-                   break;
-                   case 'auto':
-                        broadcastMessage('AUTOSENDMEssageALLcustomer')
+            broadcastMessage('AUTOSENDMEssageALLcustomer');
+            break;
+        // case 'auto':
+        //     broadcastMessage('AUTOSENDMEssageALLcustomer');
+        //     break;
         case 'no':
             //code 
             break;
         default:
-            response={'text':`oop ! i don't know response with postback ${payload}`}
+            response = { 'text': `oop ! i don't know response with postback ${payload}` }
 
         // code block
     }
     // Send the message to acknowledge the postback
     callSendAPI(sender_psid, response);
 };
-let broadcastMessage = (message)=> {
+let broadcastMessage = (message) => {
     let requestBody = {
-      messaging_type: 'MESSAGE_TAG',
-      tag: 'NON_PROMOTIONAL_SUBSCRIPTION',
-      message: message
+        messaging_type: 'MESSAGE_TAG',
+        tag: 'NON_PROMOTIONAL_SUBSCRIPTION',
+        message: message
     };
-  
+
     let options = {
-      url: `https://graph.facebook.com/v12.0/me/broadcast_messages?access_token=${PAGE_ACCESS_TOKEN}`,
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(requestBody)
+        url: `https://graph.facebook.com/v12.0/me/broadcast_messages?access_token=${PAGE_ACCESS_TOKEN}`,
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
     };
-  
+
     request(options, (err, res, body) => {
         console.log(body);
-      if (err) {
-        console.error('Error sending broadcast message:', err);
-      } else {
-        console.log('Broadcast message sent successfully:', body);
-      }
+        if (err) {
+            console.error('Error sending broadcast message:', err);
+        } else {
+            console.log('Broadcast message sent successfully:', body);
+        }
     });
-  }
+}
 // Sends response messages via the Send API
 let callSendAPI = (sender_psid, response) => {
     // Construct the message body
@@ -221,6 +223,6 @@ module.exports = {
     postWebhook: postWebhook,
     getWebhook: getWebhook,
     setupProfile: setupProfile,
-    broadcastMessage:broadcastMessage
+    broadcastMessage: broadcastMessage
 
 }
