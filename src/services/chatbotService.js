@@ -69,42 +69,31 @@ let handleGetStarted = (sender_psid) => {
 }
 let sendGetstartedTemplate=()=>{
     let response={  
-          "attachment":{
-      "type":"template",
-      "payload":{
-        "template_type":"generic",
-        "elements":[
-           {
-            "title":"Welcome to nha hang cua toi",
-            "image_url":IMAGE_GET_STARTED,
-            "subtitle":"Duoi day la lua chonj cua nha hang",
-            "default_action": {
-              "type": "web_url",
-              "url": "https://www.originalcoastclothing.com/",
-              "webview_height_ratio": "tall"
-            },
-            "buttons":[
-              {
-                "type":"web_url",
-                "url":"https://www.originalcoastclothing.com/",
-                "title":"MENU CHINH",
-                "payload":"MAIN_MENU"
-              },
-              {
-                "type":"postback",
-                "title":"Dat ban",
-                "payload":"RESERVE_TABLE" } ,
-              {
-                "type":"postback",
-                "title":"huong dan su dung chatbot",
-                "payload":"GUIDE_TO_USE" }              ]      
-              } 
-            
-            ] ,
-        
-      }
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": [{
+                        "title": "Is this the right picture?",
+                        "subtitle": "Tap a button to answer.",
+                        "image_url": IMAGE_GET_STARTED,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Yes!",
+                                "payload": "yes",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "No!",
+                                "payload": "no",
+                            }
+                        ],
+                    }]
+                }
+            }
     }
-  }
+
     return  response;
 }
 module.exports = {
