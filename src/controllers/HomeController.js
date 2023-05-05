@@ -78,7 +78,6 @@ let postWebhook = (req, res) => {
             let webhook_event = entry.messaging[0];
             console.log(webhook_event);
 
-
             // Get the sender PSID
             let sender_psid = webhook_event.sender.id;
             console.log('Sender PSID: ' + sender_psid);
@@ -160,7 +159,7 @@ let handlePostback = async (sender_psid, received_postback) => {
             break;
         case 'GET_STARTED':
             await chatBotService.handleGetStarted(sender_psid);
-            sendMessage('ALO')
+            // sendMessage('ALO')
 
             // broadcastMessage('AUTOSENDMEssageALLcustomer');
             break;
