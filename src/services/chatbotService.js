@@ -249,27 +249,25 @@ let getLunchMenuTemplate = () => {
                                 "title": "CHI TIET",
                                 "payload": "VIEW_MEAT",
                             },
-                            
-                        ]
-                    },
-                    {
-                                "title": "Quay tro lai",
-                                "subtitle": "QUAY TRO LAI MENU CHINH",
-                                "image_url": IMAGE_BACK_MAIN_MENU,
-                                "buttons": [
-                                    {
-                                        "type": "postback",
-                                        "title": "Quay tro lai",
-                                        "payload": "BACK_TO_MAIN_MENU",
-                                    },
-                                ],
-                            }
 
-                ]
+                        ]
+                    }, {
+                        "title": "Quay tro lai",
+                        "subtitle": "QUAY TRO LAI MENU CHINH",
+                        "image_url": IMAGE_BACK_MAIN_MENU,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Quay tro lai",
+                                "payload": "BACK_TO_MAIN_MENU",
+                            },
+                        ],
+                    }]
             }
         }
     }
-      return response
+        
+return response
 
     }
     let getDinnerMenuTemplate = () => {
@@ -331,6 +329,12 @@ let getLunchMenuTemplate = () => {
         }
         return response
     }
+
+let handleBackToMainMenu = async (sender_psid)=>{
+await handleSendMainMenu(sender_psid);
+
+
+}
     module.exports = {
         handleGetStarted: handleGetStarted,
         handleSendMainMenu: handleSendMainMenu,
