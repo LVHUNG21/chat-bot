@@ -10,17 +10,19 @@ const IMAGE_VIEW_APPETIZERS = 'http://bit.ly/eric-bot-5'
 const IMAGE_VIEW_FISH = 'http://bit.ly/eric-bot-6'
 const IMAGE_BACK_MAIN_MENU = 'http://bit.ly/eric-bot-8'
 
-const IMAGE_DETAIL_APPERTIZER_1='http://bit.ly/eric-bot-9'
-const IMAGE_DETAIL_APPERTIZER_2='http://bit.ly/eric-bot-10'
-const IMAGE_DETAIL_APPERTIZER_3='http://bit.ly/eric-bot-11'
+const IMAGE_DETAIL_ROOM = 'http://bit.ly/eric-bot-18'
 
-const IMAGE_DETAIL_FISH_1='http://bit.ly/eric-bot-12'
-const IMAGE_DETAIL_FISH_2='http://bit.ly/eric-bot-13-1'
-const IMAGE_DETAIL_FISH_3='http://bit.ly/eric-bot-14'
+const IMAGE_DETAIL_APPERTIZER_1 = 'http://bit.ly/eric-bot-9'
+const IMAGE_DETAIL_APPERTIZER_2 = 'http://bit.ly/eric-bot-10'
+const IMAGE_DETAIL_APPERTIZER_3 = 'http://bit.ly/eric-bot-11'
 
-const IMAGE_DETAIL_MEAT_1='http://bit.ly/eric-bot-15'
-const IMAGE_DETAIL_MEAT_2='http://bit.ly/eric-bot-16'
-const IMAGE_DETAIL_MEAT_3='http://bit.ly/eric-bot-17'
+const IMAGE_DETAIL_FISH_1 = 'http://bit.ly/eric-bot-12'
+const IMAGE_DETAIL_FISH_2 = 'http://bit.ly/eric-bot-13-1'
+const IMAGE_DETAIL_FISH_3 = 'http://bit.ly/eric-bot-14'
+
+const IMAGE_DETAIL_MEAT_1 = 'http://bit.ly/eric-bot-15'
+const IMAGE_DETAIL_MEAT_2 = 'http://bit.ly/eric-bot-16'
+const IMAGE_DETAIL_MEAT_3 = 'http://bit.ly/eric-bot-17'
 
 const IMAGE_VIEW_MEAT = 'http://bit.ly/eric-bot-7'
 let callSendAPI = async (sender_psid, response) => {
@@ -56,7 +58,7 @@ let sendTypingOn = (sender_psid,) => {
         "recipient": {
             "id": sender_psid
         },
-        "sender_action":"typing_on",
+        "sender_action": "typing_on",
     };
     // Send the HTTP request to the Messenger Platform
     request({
@@ -73,14 +75,14 @@ let sendTypingOn = (sender_psid,) => {
     })
         ;
 }
-let sendMarkReadMessage = (sender_psid ) => {
+let sendMarkReadMessage = (sender_psid) => {
     //sender_psid laf nguoi nhan tin nhan 
     // Construct the message body
     let request_body = {
         "recipient": {
             "id": sender_psid
         },
-        "sender_action":"typing_on",
+        "sender_action": "mark_seen",
     };
     // Send the HTTP request to the Messenger Platform
     request({
@@ -329,74 +331,77 @@ let getLunchMenuTemplate = () => {
             }
         }
     }
-        
-return response
 
-    }
-    let getDinnerMenuTemplate = () => {
-        let response = {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": [
-                        {
-                            "title": "Menu cua nha hang",
-                            "subtitle": "chung toi han hanh mang den dich vu.",
-                            "image_url": IMAGE_MAIN_MENU_2,
-                            "buttons": [
-                                {
-                                    "type": "postback",
-                                    "title": "Bua trua",
-                                    "payload": "LUNCH_MENU",
-                                },
-                                {
-                                    "type": "postback",
-                                    "title": "BUA TOI",
-                                    "payload": "DINNER_MENU"
-                                },
-                                {
-                                    "type": "postback",
-                                    "title": "HUONG DAN SU DUNG CHAT BOT",
-                                    "payload": "HUONG_DAN",
-                                }
-                            ],
-                        },
-                        {
-                            "title": "Gio mo cua",
-                            "subtitle": "T2-t6 10am-11am ",
-                            "image_url": IMAGE_MAIN_MENU_3,
-                            "buttons": [
-                                {
-                                    "type": "postback",
-                                    "title": "Dat ban",
-                                    "payload": "RESERVE_TABLE",
-                                },
-                            ],
-                        },
-                        {
-                            "title": "KHONG GIAN NHA HANG",
-                            "subtitle": "restaurant accommodates up to 300 seated",
-                            "image_url": IMAGE_MAIN_MENU_4,
-                            "buttons": [
-                                {
-                                    "type": "postback",
-                                    "title": "CHI TIET",
-                                    "payload": "SHOW_ROOM",
-                                },
-                            ],
-                        }
-                    ]
-                }
+    return response
+
+}
+let getDinnerMenuTemplate = () => {
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                        "title": "Mon trang mien",
+                        "subtitle": "Nha hang co nhieu mon trang mien hap dan .",
+                        "image_url": IMAGE_VIEW_APPETIZERS,
+                        "buttons": [
+                            {
+                                //appertizers
+                                "type": "postback",
+                                "title": "Xem Chi Tiet",
+                                "payload": "VIEW_APPETIZERS",
+                            },
+                        ],
+                    },
+                    {
+                        "title": "ca bay mau",
+                        "subtitle": "ca nuoc ngot va ca nuoc man",
+                        "image_url": IMAGE_VIEW_FISH,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Xem chi tiet",
+                                "payload": "VIEW_FISH",
+                            },
+                        ],
+                    },
+                    {
+                        "title": "Thit hun khoi",
+                        "subtitle": "dam bao chat luong",
+                        "image_url": IMAGE_VIEW_MEAT,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "CHI TIET",
+                                "payload": "VIEW_MEAT",
+                            },
+
+                        ]
+                    }, {
+                        "title": "Quay tro lai",
+                        "subtitle": "QUAY TRO LAI MENU CHINH",
+                        "image_url": IMAGE_BACK_MAIN_MENU,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Quay tro lai",
+                                "payload": "BACK_TO_MAIN_MENU",
+                            },
+                        ],
+                    }]
             }
         }
-        return response
     }
 
-let handleBackToMainMenu = async (sender_psid)=>{
-await handleSendMainMenu(sender_psid);
+    return response
 }
-let getDetailViewAppetizer  = () => {
+
+let handleBackToMainMenu = async (sender_psid) => {
+    await handleSendMainMenu(sender_psid);
+}
+let getDetailViewAppetizer = () => {
     let response = {
         "attachment": {
             "type": "template",
@@ -407,20 +412,20 @@ let getDetailViewAppetizer  = () => {
                         "title": "DUA HAU",
                         "subtitle": "50ndt",
                         "image_url": IMAGE_DETAIL_APPERTIZER_1,
-                       
+
                     },
                     {
                         "title": "Xoai",
                         "subtitle": "10ndt",
                         "image_url": IMAGE_DETAIL_APPERTIZER_2,
-                      
+
                     },
                     {
                         "title": "Sau rieng",
                         "subtitle": "40ndt",
                         "image_url": IMAGE_DETAIL_APPERTIZER_3,
                     },
-                     {
+                    {
                         "title": "quay tro lai ",
                         "subtitle": "quay tro lai main menu",
                         "image_url": IMAGE_DETAIL_APPERTIZER_3,
@@ -438,7 +443,7 @@ let getDetailViewAppetizer  = () => {
     }
     return response
 }
-let handleDetailViewAppetizer= (sender_psid)=>{
+let handleDetailViewAppetizer = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
             let response1 = getDetailViewAppetizer();
@@ -463,20 +468,20 @@ let getDetailViewFish = () => {
                         "title": "Ca voi xanh ",
                         "subtitle": "50ndt",
                         "image_url": IMAGE_DETAIL_FISH_1,
-                       
+
                     },
                     {
                         "title": "Ca ro phi",
                         "subtitle": "10ndt",
                         "image_url": IMAGE_DETAIL_FISH_2,
-                      
+
                     },
                     {
                         "title": "Ca loc",
                         "subtitle": "40ndt",
                         "image_url": IMAGE_DETAIL_FISH_3,
                     },
-                     {
+                    {
                         "title": "quay tro lai ",
                         "subtitle": "quay tro lai main menu",
                         "image_url": IMAGE_DETAIL_APPERTIZER_3,
@@ -495,7 +500,7 @@ let getDetailViewFish = () => {
     return response
 }
 
-let handleDetailViewFish= (sender_psid)=>{
+let handleDetailViewFish = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
             let response1 = getDetailViewFish();
@@ -509,7 +514,7 @@ let handleDetailViewFish= (sender_psid)=>{
     })
 
 }
-let getDetailViewMeat  = () => {
+let getDetailViewMeat = () => {
     let response = {
         "attachment": {
             "type": "template",
@@ -520,20 +525,20 @@ let getDetailViewMeat  = () => {
                         "title": "thit lon",
                         "subtitle": "50ndt",
                         "image_url": IMAGE_DETAIL_MEAT_1,
-                       
+
                     },
                     {
                         "title": "thit lon luoc",
                         "subtitle": "10ndt",
                         "image_url": IMAGE_DETAIL_MEAT_2,
-                      
+
                     },
                     {
                         "title": "thit lon CN",
                         "subtitle": "40ndt",
                         "image_url": IMAGE_DETAIL_MEAT_3,
                     },
-                     {
+                    {
                         "title": "quay tro lai ",
                         "subtitle": "quay tro lai main menu",
                         "image_url": IMAGE_DETAIL_APPERTIZER_3,
@@ -551,7 +556,7 @@ let getDetailViewMeat  = () => {
     }
     return response
 }
-let handleDetailViewMeat= (sender_psid)=>{
+let handleDetailViewMeat = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
             let response1 = getDetailViewMeat();
@@ -565,13 +570,67 @@ let handleDetailViewMeat= (sender_psid)=>{
     })
 
 }
-    module.exports = {
-        handleGetStarted: handleGetStarted,
-        handleSendMainMenu: handleSendMainMenu,
-        handleSendLunchMenu: handleSendLunchMenu,
-        handleSendDinnerMenu: handleSendDinnerMenu,
-        handleBackToMainMenu:handleBackToMainMenu,
-        handleDetailViewAppetizer:handleDetailViewAppetizer,
-        handleDetailViewFish:handleDetailViewFish,
-        handleDetailViewMeat:handleDetailViewMeat,
+let getImageRooms = () => {
+    let response = {
+        "attachment": {
+            "type": "image",
+            "payload": {
+                "url": IMAGE_DETAIL_ROOM,
+                "is_reusable": true
+            }
+        }
     }
+    return response;
+}
+let getButtonRooms = () => {
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "button",
+                "text": "Nha hang co the phuc vu toi da 300 khach",
+                "buttons": [
+                    {
+                        "type": "postback",
+                        "title": "MEnuchinh",
+                        "paylad": "MAIN_MENU"
+                    },
+                    {
+                        "type": "postback",
+                        "title": "dat ban",
+                        "title": "RESERVE_TABLE"
+                    },
+
+                ]
+            }
+        }
+    }
+    return response;
+}
+let handleshowDetailRooms = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            //send an image
+            let response1 = getImageRooms();
+            let response2 = getButtonRooms();
+            //send text message
+            await callSendAPI(sender_psid, response1)
+            await callSendAPI(sender_psid, response2)
+            // send generic messagea
+
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+module.exports = {
+    handleGetStarted: handleGetStarted,
+    handleSendMainMenu: handleSendMainMenu,
+    handleSendLunchMenu: handleSendLunchMenu,
+    handleSendDinnerMenu: handleSendDinnerMenu,
+    handleBackToMainMenu: handleBackToMainMenu,
+    handleDetailViewAppetizer: handleDetailViewAppetizer,
+    handleDetailViewFish: handleDetailViewFish,
+    handleDetailViewMeat: handleDetailViewMeat,
+    handleshowDetailRooms: handleshowDetailRooms,
+}

@@ -193,7 +193,9 @@ let handlePostback = async (sender_psid, received_postback) => {
         case 'BACK_TO_MAIN_MENU':
             await chatBotService.handleBackToMainMenu(sender_psid);
             break;
-
+        case 'SHOW_ROM':
+            await chatBotService.handleshowDetailRooms(sender_psid);
+            break
         default:
             response = { 'text': `oop ! i don't know response with postback ${payload}` }
 
