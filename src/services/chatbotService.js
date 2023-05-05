@@ -68,7 +68,8 @@ let handleGetStarted = (sender_psid) => {
     })
 }
 let sendGetstartedTemplate=()=>{
-    let response={    "attachment":{
+    let response={  
+          "attachment":{
       "type":"template",
       "payload":{
         "template_type":"generic",
