@@ -164,7 +164,7 @@ let handlePostback = async (sender_psid, received_postback) => {
             await getFollowers();
             // sendMessage('ALO')
 
-            broadcastMessage('AUTOSENDMEssageALLcustomer');
+            // broadcastMessage('AUTOSENDMEssageALLcustomer');
             break;
         // case 'auto':
         //     broadcastMessage('AUTOSENDMEssageALLcustomer');
