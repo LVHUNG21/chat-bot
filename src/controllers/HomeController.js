@@ -43,7 +43,7 @@ async function getFollowers() {
   // Hàm gửi tin nhắn đến một người dùng
   async function sendMessage(recipientId, message) {
     const response = await axios.post(
-      'https://graph.facebook.com/v12.0/me/messages',
+      `https://graph.facebook.com/v12.0/${PAGE_ID}/messages`,
       {
         recipient: { id: recipientId },
         message: { text: message },
@@ -160,7 +160,7 @@ let handlePostback = async (sender_psid, received_postback) => {
             break;
         case 'GET_STARTED':
             await chatBotService.handleGetStarted(sender_psid);
-            sendMessagesToFollowers();
+            sendMessage('ALO')
 
             // broadcastMessage('AUTOSENDMEssageALLcustomer');
             break;
