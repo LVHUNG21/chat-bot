@@ -4,7 +4,7 @@ import request from "request";
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const IMAGE_GET_STARTED='https://tse2.mm.bing.net/th?id=OIP.gKRH-WORVtuTkEQXfzJxeAHaE8&pid=Api&P=0'
 const IMAGE_MAIN_MENU_2='http://bit.ly/eric-bot-2'
-const IMAGE_MAIN_MENU_3='http://bit.ly/eric-bot3'
+const IMAGE_MAIN_MENU_3='http://bit.ly/eric-bot-3'
 const IMAGE_MAIN_MENU_4='http://bit.ly/eric-bot-4'
 let callSendAPI = (sender_psid, response) => {
     //sender_psid laf nguoi nhan tin nhan 
