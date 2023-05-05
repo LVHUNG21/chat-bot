@@ -27,7 +27,7 @@ let handleGetStarted= ()=>{
     return Promise(async (resolve,reject)=>{
         try {
              let response = { "text": "OK.XIN CHAO DEN VOI NHA HANG" }
-             await this.callSendAPI(response)
+             await callSendAPI(response)
              resolve('done');
 
         }catch(e){
