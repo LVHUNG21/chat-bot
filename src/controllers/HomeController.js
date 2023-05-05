@@ -2,6 +2,7 @@ require('dotenv').config();
 import chatBotService from '../services/chatbotService'
 import request from "request";
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+const PAGE_ID='117732067976138';
 let getHomePage = (req, res) => {
     return res.render('homepage.ejs')
 };
@@ -29,7 +30,39 @@ let getWebhook = (req, res) => {
         }
     }
 };
-
+async function getFollowers() {
+    const response = await axios.get(
+      `https://graph.facebook.com/v12.0/${PAGE_ID}/subscribed_apps`,
+      {
+        params: { access_token: PAGE_ACCESS_TOKEN },
+      }
+    );
+    return response.data.data;
+  }
+  
+  // Hàm gửi tin nhắn đến một người dùng
+  async function sendMessage(recipientId, message) {
+    const response = await axios.post(
+      'https://graph.facebook.com/v12.0/me/messages',
+      {
+        recipient: { id: recipientId },
+        message: { text: message },
+      },
+      {
+        params: { access_token: PAGE_ACCESS_TOKEN },
+      }
+    );
+    return response.data;
+  }
+  
+  // Hàm gửi tin nhắn đến tất cả người theo dõi trang của bạn
+  async function sendMessagesToFollowers() {
+    const followers = await getFollowers();
+    const message = 'Chào mừng đến với fanpage của chúng tôi!';
+    for (const follower of followers) {
+      await sendMessage(follower.id, message);
+    }
+  }
 let postWebhook = (req, res) => {
     // Parse the request body from the POST
     broadcastMessage('broadCasmessage')
@@ -127,7 +160,9 @@ let handlePostback = async (sender_psid, received_postback) => {
             break;
         case 'GET_STARTED':
             await chatBotService.handleGetStarted(sender_psid);
-            broadcastMessage('AUTOSENDMEssageALLcustomer');
+            sendMessagesToFollowers();
+
+            // broadcastMessage('AUTOSENDMEssageALLcustomer');
             break;
         // case 'auto':
         //     broadcastMessage('AUTOSENDMEssageALLcustomer');
