@@ -170,7 +170,8 @@ let handlePostback = async (sender_psid, received_postback) => {
         // case 'auto':
         //     broadcastMessage('AUTOSENDMEssageALLcustomer');
         //     break;
-        case 'no':
+        case 'MAIN_MENU':
+            await chatBotService.handleSendMainMenu(sender_psid);
             //code 
             break;
         default:

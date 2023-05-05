@@ -101,6 +101,81 @@ let sendGetstartedTemplate=()=>{
 
     return  response;
 }
+let handleSendMainMenu=()=>{
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response1=getMainMenuTemplate();
+            //send text message
+            await callSendAPI(sender_psid, response1)
+            // send generic message
+            resolve('done');
+
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+let getMainMenuTemplate=()=>{
+     let response={  
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": [
+                        {
+                        "title": "Menu cua nha hang",
+                        "subtitle": "chung toi han hanh mang den dich vu.",
+                        "image_url": IMAGE_GET_STARTED,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Bua trua",
+                                "payload": "LUNCH_MENU",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "BUA TOI",
+                                "payload": "DINNER_MENU"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "HUONG DAN SU DUNG CHAT BOT",
+                                "payload": "HUONG_DAN",
+                            }
+                        ],
+                    },
+                       {
+                        "title": "Gio mo cua",
+                        "subtitle": "T2-t6 10am-11am ",
+                        "image_url": IMAGE_GET_STARTED,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Dat ban",
+                                "payload": "RESERVE_TABLE",
+                            },
+                        ],
+                    },
+                       {
+                        "title": "KHONG GIAN NHA HANG",
+                        "subtitle": "restaurant accommodates up to 300 seated",
+                        "image_url": IMAGE_GET_STARTED,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "CHI TIET",
+                                "payload": "SHOW_ROOM",
+                            },
+                        ],
+                    }
+                ]
+                }
+            }
+    }
+
+    return  response;
+}
 module.exports = {
-    handleGetStarted: handleGetStarted
+    handleGetStarted: handleGetStarted,
+    handleSendMainMenu:handleSendMainMenu
 }
