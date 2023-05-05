@@ -15,7 +15,7 @@ const IMAGE_DETAIL_APPERTIZER_2='http://bit.ly/eric-bot-10'
 const IMAGE_DETAIL_APPERTIZER_3='http://bit.ly/eric-bot-11'
 
 const IMAGE_DETAIL_FISH_1='http://bit.ly/eric-bot-12'
-const IMAGE_DETAIL_FISH_2='http://bit.ly/eric-bot-13'
+const IMAGE_DETAIL_FISH_2='http://bit.ly/eric-bot-13-1'
 const IMAGE_DETAIL_FISH_3='http://bit.ly/eric-bot-14'
 
 const IMAGE_DETAIL_MEAT_1='http://bit.ly/eric-bot-15'
@@ -23,7 +23,7 @@ const IMAGE_DETAIL_MEAT_2='http://bit.ly/eric-bot-16'
 const IMAGE_DETAIL_MEAT_3='http://bit.ly/eric-bot-17'
 
 const IMAGE_VIEW_MEAT = 'http://bit.ly/eric-bot-7'
-let callSendAPI = (sender_psid, response) => {
+let callSendAPI = async (sender_psid, response) => {
     //sender_psid laf nguoi nhan tin nhan 
     // Construct the message body
     let request_body = {
@@ -32,6 +32,8 @@ let callSendAPI = (sender_psid, response) => {
         },
         "message": response
     };
+    await sendMarkReadMessage(sender_psid);
+    await sendTypingOn(sender_psid);
     // Send the HTTP request to the Messenger Platform
     request({
         "uri": "https://graph.facebook.com/v9.0/me/messages",
@@ -43,6 +45,54 @@ let callSendAPI = (sender_psid, response) => {
             console.log('message sent!')
         } else {
             console.error("Unable to send message:" + err);
+        }
+    })
+        ;
+}
+let sendTypingOn = (sender_psid,) => {
+    //sender_psid laf nguoi nhan tin nhan 
+    // Construct the message body
+    let request_body = {
+        "recipient": {
+            "id": sender_psid
+        },
+        "sender_action":"typing_on",
+    };
+    // Send the HTTP request to the Messenger Platform
+    request({
+        "uri": "https://graph.facebook.com/v9.0/me/messages",
+        "qs": { "access_token": process.env.PAGE_ACCESS_TOKEN },
+        "method": "POST",
+        "json": request_body
+    }, (err, res, body) => {
+        if (!err) {
+            console.log('sent typing on!')
+        } else {
+            console.error("Unable to send TYPINGON message:" + err);
+        }
+    })
+        ;
+}
+let sendMarkReadMessage = (sender_psid ) => {
+    //sender_psid laf nguoi nhan tin nhan 
+    // Construct the message body
+    let request_body = {
+        "recipient": {
+            "id": sender_psid
+        },
+        "sender_action":"typing_on",
+    };
+    // Send the HTTP request to the Messenger Platform
+    request({
+        "uri": "https://graph.facebook.com/v9.0/me/messages",
+        "qs": { "access_token": process.env.PAGE_ACCESS_TOKEN },
+        "method": "POST",
+        "json": request_body
+    }, (err, res, body) => {
+        if (!err) {
+            console.log('sent typing on!')
+        } else {
+            console.error("Unable to send TYPINGON message:" + err);
         }
     })
         ;
