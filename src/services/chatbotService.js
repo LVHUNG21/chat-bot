@@ -107,8 +107,7 @@ let handleSendMainMenu=(sender_psid)=>{
             let response1=getMainMenuTemplate();
             //send text message
             await callSendAPI(sender_psid, response1)
-            // send generic message
-            resolve('done');
+            // send generic messagea
 
         } catch (e) {
             reject(e);
