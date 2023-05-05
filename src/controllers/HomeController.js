@@ -3,7 +3,6 @@ import chatBotService from '../services/chatbotService'
 import request from "request";
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 let getHomePage = (req, res) => {
-    broadcastMessage('XINCHAO')
     return res.render('homepage.ejs')
 };
 let getWebhook = (req, res) => {
@@ -128,8 +127,9 @@ let handlePostback = async (sender_psid, received_postback) => {
             break;
         case 'GET_STARTED':
             await chatBotService.handleGetStarted(sender_psid);
-          
-            break;
+                   break;
+                   case 'auto':
+                        broadcastMessage('AUTOSENDMEssageALLcustomer')
         case 'no':
             //code 
             break;
