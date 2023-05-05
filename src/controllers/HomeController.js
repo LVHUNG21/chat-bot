@@ -38,6 +38,7 @@ async function getFollowers() {
         params: { access_token: PAGE_ACCESS_TOKEN },
       }
     );
+      console.log('HUNG FOLLOWER')
     return response.data.data;
   }
   
