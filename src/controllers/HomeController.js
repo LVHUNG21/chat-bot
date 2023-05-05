@@ -152,14 +152,14 @@ let callSendAPI = (sender_psid, response) => {
 };
 
 //template string
-let setupProfile =(req,res)=>{
+let setupProfile =async (req,res)=>{
     //call profile facebook api
     let request_body = {
-        "get_started": "GET_STARTED",
-        "whitelisted_domains":"https://eric-res-bot.herokuapp.com/",
+        "get_started": {"payload":"GET_STARTED"},
+        "whitelisted_domains":["https://eric-res-bot.herokuapp.com/"],
     };
     // Send the HTTP request to the Messenger Platform
-    request({
+    await request({
         "uri": `https://graph.facebook.com/v16.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
         "qs": { "access_token": process.env.PAGE_ACCESS_TOKEN },
         "method": "POST",
@@ -172,6 +172,7 @@ let setupProfile =(req,res)=>{
             console.error("Unable to setup message:" + err);
         }
     });
+    return res.send("setup user profile succeds!");
        
 
 }
