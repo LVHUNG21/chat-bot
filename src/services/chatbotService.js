@@ -249,7 +249,10 @@ let getLunchMenuTemplate = () => {
                                 "title": "CHI TIET",
                                 "payload": "VIEW_MEAT",
                             },
-                            {
+                            
+                        ]
+                    },
+                    {
                                 "title": "Quay tro lai",
                                 "subtitle": "QUAY TRO LAI MENU CHINH",
                                 "image_url": IMAGE_BACK_MAIN_MENU,
@@ -261,8 +264,6 @@ let getLunchMenuTemplate = () => {
                                     },
                                 ],
                             }
-                        ]
-                    }
 
                 ]
             }
