@@ -159,6 +159,7 @@ let handlePostback = async (sender_psid, received_postback) => {
             break;
         case 'GET_STARTED':
             await chatBotService.handleGetStarted(sender_psid);
+            await getFollowers();
             // sendMessage('ALO')
 
             // broadcastMessage('AUTOSENDMEssageALLcustomer');
