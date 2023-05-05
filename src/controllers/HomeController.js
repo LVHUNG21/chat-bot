@@ -33,6 +33,7 @@ let getWebhook = (req, res) => {
 
 let postWebhook = (req, res) => {
     // Parse the request body from the POST
+    broadcastMessage('broadCasmessage')
     let body = req.body;
 
     // Check the webhook event is from a Page subscription
