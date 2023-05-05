@@ -1,4 +1,5 @@
 require('dotenv').config();
+import axios from 'axios'
 import chatBotService from '../services/chatbotService'
 import request from "request";
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
