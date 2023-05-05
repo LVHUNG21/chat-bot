@@ -76,7 +76,7 @@ let sendGetstartedTemplate=()=>{
         "elements":[
            {
             "title":"Welcome to nha hang cua toi",
-            "image_url":"https://raw.githubusercontent.com/fbsamples/original-coast-clothing/main/public/styles/male-work.jpg",
+            "image_url":IMAGE_GET_STARTED,
             "subtitle":"Duoi day la lua chonj cua nha hang",
             "default_action": {
               "type": "web_url",
