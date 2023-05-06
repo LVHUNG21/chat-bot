@@ -34,10 +34,12 @@
     };
     function getUser() {
       MessengerExtensions.getContext('753933095237424',function success(uids) {
+        console.log('hungsuccess')
         var psid = uids.psid;
         alert(JSON.stringify(psid));
       }, function error(err, errorMessage) {
         alert(JSON.stringify(errorMessage));
+        console.log("hung eror")
       });
     }
   </script>
