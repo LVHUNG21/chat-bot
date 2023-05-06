@@ -599,7 +599,7 @@ let getButtonRooms = () => {
                     },
                     {
                         "type": "web_url",
-                        "url": `${process.env.URL_WEB_VIEW_ORDER}`,
+                        "url": `http://youtube.com`,
                         "title":"DATBAN",
                          "webview_height_ratio": "tall",
                          "messenger_extensions":true,
