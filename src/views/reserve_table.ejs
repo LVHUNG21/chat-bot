@@ -18,29 +18,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script>
-        window.extAsyncInit = function() {
-        console.log('daoxong')
-            // Khi SDK đã tải xong
-            MessengerExtensions.isInExtensionContext(function(isInExtension) {
-                if (isInExtension) {
-                    // Nếu đang trong ngữ cảnh của Messenger Extension
-                    getUser();
-                } else {
-                    // Nếu không trong ngữ cảnh của Messenger Extension
-                    console.log('Messenger Extensions are not enabled.');
-                }
-            });
-        };
-    
-        function getUser() {
-            MessengerExtensions.getContext('1554138315079604', function success(uids) {
-                console.log('User ID:', uids.psid);
-            }, function error(err) {
-                console.log('Error:', err);
-            });
-        }
-    </script>
+  
 
 
     <!-- Load custom Javascript and CSS-->
@@ -73,7 +51,7 @@
                     <input type="text" id="phoneNumber" class="form-control" placeholder="Số điện thoại...">
                     <div class="invalid-feedback">Số điện thoại không hợp lệ.</div>
                 </div>
-                <button class="btn btn-primary" id="btnReserveTable"> ĐẶT BÀN </button>
+                <button class="btn btn-primary" id="btnRes"> ĐẶT BÀN </button>
             </div>
 
         </div>
