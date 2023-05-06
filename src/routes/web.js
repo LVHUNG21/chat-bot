@@ -7,6 +7,7 @@ let initWebRoutes=(app)=>{
     )
     router.post('/webhook',HomeController.postWebhook)
     router.get('/webhook',HomeController.getWebhook)
+    router.get('/reserve-table',HomeController.handleReserveTable)
 
     //setup get started button , whitelisted domain
     router.post('/setup-profile',HomeController.setupProfile)

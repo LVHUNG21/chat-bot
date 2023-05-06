@@ -221,9 +221,11 @@ let getMainMenuTemplate = () => {
                         "image_url": IMAGE_MAIN_MENU_3,
                         "buttons": [
                             {
-                                "type": "postback",
-                                "title": "Dat ban",
-                                "payload": "RESERVE_TABLE",
+                                    "type": "web_url",
+                                    "url": `${process.env.URL_WEB_VIEW_ORDER}`,
+                                    "title":"DATBAN",
+                                     "webview_height_ratio": "tall",
+                                     "messenger_extensions":true,
                             },
                         ],
                     },
@@ -593,13 +595,20 @@ let getButtonRooms = () => {
                     {
                         "type": "postback",
                         "title": "MEnuchinh",
-                        "paylad": "MAIN_MENU"
+                        "payload": "MAIN_MENU"
                     },
                     {
-                        "type": "postback",
-                        "title": "dat ban",
-                        "title": "RESERVE_TABLE"
+                        "type": "web_url",
+                        "url": `${process.env.URL_WEB_VIEW_ORDER}`,
+                        "title":"DATBAN",
+                         "webview_height_ratio": "tall",
+                         "messenger_extensions":true,
                     },
+                    {
+                        "type":"postback",
+                        "title":"Huong dan su dung bot",
+                        "payload":"GUIDE_TO_USE",
+                    }
 
                 ]
             }

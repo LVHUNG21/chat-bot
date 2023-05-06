@@ -343,6 +343,9 @@ let setupPersistentMenu = async (req, res) => {
 
 
 }
+let handleReserveTable =(req,res)=>{
+    return res.render('reserve_table.ejs')
+}
 
 module.exports = {
     getHomePage: getHomePage,
@@ -350,5 +353,5 @@ module.exports = {
     getWebhook: getWebhook,
     setupProfile: setupProfile,
     setupPersistentMenu: setupPersistentMenu,
-
+    handleReserveTable:handleReserveTable,
 }
