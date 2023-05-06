@@ -3,18 +3,17 @@
     if (d.getElementById(id)) { return; }
     js = d.createElement(s); js.id = id;
     js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
-    // <script src="//connect.facebook.net/en_US/messenger.Extensions.js"></script>
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'Messenger'));
 
 window.extAsyncInit = function () {
-    console.log('extAsuncInit');
+      console.log($("#customerName").val())
     //phai doi fb load xong moi co dc  mess extensions
     // the Messenger Extensions JS SDK is done loading 
 
-    MessengerExtensions.getContext('921454125805729', // get Context:get psid of user open webview
+    MessengerExtensions.getContext('1554138315079604', // get Context:get psid of user open webview
         function success(thread_context) {
-              console.log('handleClickbutton : success');
+              console.log('handleClickbutton');
             // success
             //set psid to input
             $("#psid").val(thread_context.psid);
