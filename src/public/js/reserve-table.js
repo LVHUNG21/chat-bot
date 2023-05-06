@@ -6,33 +6,22 @@
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'Messenger'));
 
-window.extAsyncInit = function() {
-    console.log('daoxong')
-        // Khi SDK đã tải xong
-        MessengerExtensions.requestCloseBrowser(function success() {
-            console.log('reqTrue');
-            // webview closed
-          }, function error(err) {
-            console.log("error:reqtrue");
-            // an error occurred
-          });  
-            // Khi SDK đã tải xong
-                getUser();
-            // MessengerExtensions.getContext('1554138315079604', function success(thread_context) {
-            //     getUser();
-            // }, function error(err) {
-            //     console.log('Messenger Extensions are not enabled:', err);
-            // });
-        
-    };
+window.extAsyncInit = function () {
+    // the Messenger Extensions JS SDK is done loading 
 
-    function getUser() {
-        MessengerExtensions.getContext('1554138315079604', function success(uids) {
-            console.log('User ID:', uids.psid);
-        }, function error(err) {
-            console.log('Error:', err);
-        });
-    }
+    MessengerExtensions.getContext('1554138315079604',
+        function success(thread_context) {
+            // success
+            //set psid to input
+            $("#psid").val(thread_context.psid);
+            handleClickButtonReserveTable();
+        },
+        function error(err) {
+            // error
+            console.log('Lỗi đặt bàn Eric bot', err);
+        }
+    );
+};
 
 //validate inputs
 function validateInputFields() {
@@ -60,9 +49,8 @@ function validateInputFields() {
 
 
 function handleClickButtonReserveTable() {
-    $("#btnRes").on("click", function (e) {
-        // let check = validateInputFields(); //return true or false
-console.log('hungclick');
+    $("#btnReserveTable").on("click", function (e) {
+        let check = validateInputFields(); //return true or false
 
         let data = {
             psid: $("#psid").val(),
@@ -82,7 +70,7 @@ console.log('hungclick');
 
             //send data to node.js server 
             $.ajax({
-                url: `${window.location.origin}/reserve-table-ajax`,//window.location.origin de lay link cuthe
+                url: `${window.location.origin}/reserve-table-ajax`,
                 method: "POST",
                 data: data,
                 success: function (data) {
