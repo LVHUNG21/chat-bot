@@ -10,7 +10,7 @@
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="//connect.facebook.net/en_US/messenger.Extensions.js"></script>
+
 
     <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -19,31 +19,27 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://connect.facebook.com/en_US/messenger.Extensions.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'Messenger'));
-    window.extAsyncInit = function() {
-        getUser();
-      alert('loaded sdk');
-    };
-    function getUser() {
-      MessengerExtensions.getContext('1554138315079604',function success(uids) {
-        console.log('hungsuccess')
-        var psid = uids.psid;
-        alert(JSON.stringify(psid));
-      }, function error(err, errorMessage) {
-        alert(JSON.stringify(errorMessage));
-        console.log("hung eror")
-      });
-    }
-  </script>
+        window.extAsyncInit = function() {
+            // Khi SDK đã tải xong
+            MessengerExtensions.isInExtensionContext(function(isInExtension) {
+                if (isInExtension) {
+                    // Nếu đang trong ngữ cảnh của Messenger Extension
+                    getUser();
+                } else {
+                    // Nếu không trong ngữ cảnh của Messenger Extension
+                    console.log('Messenger Extensions are not enabled.');
+                }
+            });
+        };
+    
+        function getUser() {
+            MessengerExtensions.getContext('1554138315079604', function success(uids) {
+                console.log('User ID:', uids.psid);
+            }, function error(err) {
+                console.log('Error:', err);
+            });
+        }
+    </script>
 
 
     <!-- Load custom Javascript and CSS-->
