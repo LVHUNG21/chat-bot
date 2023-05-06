@@ -21,6 +21,7 @@ window.extAsyncInit = function () {
             handleClickButtonReserveTable();
         },
         function error(err) {
+            handleClickButtonReserveTable();
             // error
             console.log('Lỗi đặt bàn Eric bot', err);
         }
