@@ -7,9 +7,10 @@
 }(document, 'script', 'Messenger'));
 
 window.extAsyncInit = function () {
+    //phai doi fb load xong moi co dc  mess extensions
     // the Messenger Extensions JS SDK is done loading 
 
-    MessengerExtensions.getContext('753933095237424',
+    MessengerExtensions.getContext('1554138315079604', // get Context:get psid of user open webview
         function success(thread_context) {
             // success
             //set psid to input
