@@ -6,24 +6,26 @@
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'Messenger'));
 
-// window.extAsyncInit = function () {
-//     //phai doi fb load xong moi co dc  mess extensions
-//     // the Messenger Extensions JS SDK is done loading 
-//     MessengerExtensions.getContext('1554138315079604', // get Context:get psid of user open webview
-//         function success(thread_context) {
-//               console.log('handleClickbutton');
-//             // success
-//             //set psid to input
-//             $("#psid").val(thread_context.psid);
-//             console.log("psid: ",thread_context.psid)
-//             handleClickButtonReserveTable();
-//         },
-//         function error(err) {
-//             // error
-//             console.log('Lỗi đặt bàn Eric bot', err);
-//         }
-//     );
-// };
+window.extAsyncInit = function () {
+    console.log('extAsuncInit');
+    //phai doi fb load xong moi co dc  mess extensions
+    // the Messenger Extensions JS SDK is done loading 
+
+    // MessengerExtensions.getContext('1554138315079604', // get Context:get psid of user open webview
+    //     function success(thread_context) {
+    //           console.log('handleClickbutton');
+    //         // success
+    //         //set psid to input
+    //         $("#psid").val(thread_context.psid);
+    //         console.log("psid: ")
+    //         handleClickButtonReserveTable();
+    //     },
+    //     function error(err) {
+    //         // error
+    //         console.log('Lỗi đặt bàn Eric bot', err);
+    //     }
+    // );
+};
 
 //validate inputs
 function validateInputFields() {
