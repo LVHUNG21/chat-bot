@@ -123,6 +123,7 @@ let getUserName = (sender_psid) => {
 
 }
 let handleGetStarted = (sender_psid) => {
+    console.log('getstarted')
     return new Promise(async (resolve, reject) => {
         try {
             let username = await getUserName(sender_psid);
