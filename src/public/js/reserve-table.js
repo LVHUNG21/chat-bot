@@ -7,7 +7,7 @@
 }(document, 'script', 'Messenger'));
 
 window.extAsyncInit = function () {
-      console.log($("#customerName").val())
+      console.log( $("#customerName").val())
     //phai doi fb load xong moi co dc  mess extensions
     // the Messenger Extensions JS SDK is done loading 
 
@@ -23,7 +23,6 @@ window.extAsyncInit = function () {
         function error(err) {
             // error
             console.log('Lỗi đặt bàn Eric bot', err);
-             handleClickButtonReserveTable();
         }
     );
 };
@@ -54,10 +53,10 @@ function validateInputFields() {
 
 
 function handleClickButtonReserveTable() {
-      console.log('handleClickbutton');
     $("#btnReserveTable").on("click", function (e) {
-        let check = validateInputFields(); //return true or false
-        console.log('hunggbutton')
+        // let check = validateInputFields(); //return true or false
+console.log('hungclick');
+
         let data = {
             psid: $("#psid").val(),
             customerName: $("#customerName").val(),
