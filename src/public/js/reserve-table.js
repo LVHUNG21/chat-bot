@@ -12,20 +12,20 @@ window.extAsyncInit = function () {
     //phai doi fb load xong moi co dc  mess extensions
     // the Messenger Extensions JS SDK is done loading 
 
-    // MessengerExtensions.getContext('155413831507960', // get Context:get psid of user open webview
-    //     function success(thread_context) {
-    //           console.log('handleClickbutton : success');
-    //         // success
-    //         //set psid to input
-    //         $("#psid").val(thread_context.psid);
-    //         console.log("psid: ")
-    //         handleClickButtonReserveTable();
-    //     },
-    //     function error(err) {
-    //         // error
-    //         console.log('Lỗi đặt bàn Eric bot', err);
-    //     }
-    // );
+    MessengerExtensions.getContext('155413831507960', // get Context:get psid of user open webview
+        function success(thread_context) {
+              console.log('handleClickbutton : success');
+            // success
+            //set psid to input
+            $("#psid").val(thread_context.psid);
+            console.log("psid: ")
+            handleClickButtonReserveTable();
+        },
+        function error(err) {
+            // error
+            console.log('Lỗi đặt bàn Eric bot', err);
+        }
+    );
 };
 
 //validate inputs
