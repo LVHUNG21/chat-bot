@@ -157,8 +157,8 @@ let sendGetstartedTemplate = () => {
                         },
                         {
                             "type": "postback",
-                            "title": "No!",
-                            "payload": "DAT_BAN",
+                            "title": "Dat ban",
+                            "payload": "RESERVE_TABLE",
                         },
                         {
                             "type": "postback",
