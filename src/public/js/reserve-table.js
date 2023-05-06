@@ -9,7 +9,13 @@
 window.extAsyncInit = function() {
     console.log('daoxong')
         // Khi SDK đã tải xong
-       
+        MessengerExtensions.requestCloseBrowser(function success() {
+            console.log('reqTrue');
+            // webview closed
+          }, function error(err) {
+            console.log("error:reqtrue");
+            // an error occurred
+          });  
             // Khi SDK đã tải xong
                 getUser();
             // MessengerExtensions.getContext('1554138315079604', function success(thread_context) {
