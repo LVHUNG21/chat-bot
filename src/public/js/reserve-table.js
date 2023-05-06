@@ -9,14 +9,14 @@
 window.extAsyncInit = function() {
     console.log('daoxong')
         // Khi SDK đã tải xong
-        window.extAsyncInit = function() {
+       
             // Khi SDK đã tải xong
             MessengerExtensions.getContext('1554138315079604', function success(thread_context) {
                 getUser();
             }, function error(err) {
                 console.log('Messenger Extensions are not enabled:', err);
             });
-        };
+        
     };
 
     function getUser() {
