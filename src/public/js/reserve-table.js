@@ -1,32 +1,32 @@
-// (function (d, s, id) {
-//     var js, fjs = d.getElementsByTagName(s)[0];
-//     if (d.getElementById(id)) { return; }
-//     js = d.createElement(s); js.id = id;
-//     js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
-//     fjs.parentNode.insertBefore(js, fjs);
-// }(document, 'script', 'Messenger'));
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) { return; }
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'Messenger'));
 
-// window.extAsyncInit = function () {
-//       console.log( $("#customerName").val())
-//     //phai doi fb load xong moi co dc  mess extensions
-//     // the Messenger Extensions JS SDK is done loading 
+window.extAsyncInit = function() {
+    console.log('daoxong')
+        // Khi SDK đã tải xong
+        MessengerExtensions.isInExtensionContext(function(isInExtension) {
+            if (isInExtension) {
+                // Nếu đang trong ngữ cảnh của Messenger Extension
+                getUser();
+            } else {
+                // Nếu không trong ngữ cảnh của Messenger Extension
+                console.log('Messenger Extensions are not enabled.');
+            }
+        });
+    };
 
-//     MessengerExtensions.getContext('1554138315079604', // get Context:get psid of user open webview
-//         function success(thread_context) {
-//               console.log('handleClickbutton');
-//             // success
-//             //set psid to input
-//             $("#psid").val(thread_context.psid);
-//             console.log("psid: ")
-//             handleClickButtonReserveTable();
-//         },
-//         function error(err) {
-//             handleClickButtonReserveTable();
-//             // error
-//             console.log('Lỗi đặt bàn Eric bot', err);
-//         }
-//     );
-// };
+    function getUser() {
+        MessengerExtensions.getContext('1554138315079604', function success(uids) {
+            console.log('User ID:', uids.psid);
+        }, function error(err) {
+            console.log('Error:', err);
+        });
+    }
 
 //validate inputs
 function validateInputFields() {
