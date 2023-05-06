@@ -14,7 +14,7 @@ window.extAsyncInit = function () {
 
     MessengerExtensions.getContext('1554138315079604', // get Context:get psid of user open webview
         function success(thread_context) {
-              console.log('handleClickbutton');
+              console.log('handleClickbutton : success');
             // success
             //set psid to input
             $("#psid").val(thread_context.psid);
