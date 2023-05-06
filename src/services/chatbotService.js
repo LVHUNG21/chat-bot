@@ -599,7 +599,7 @@ let getButtonRooms = () => {
                     },
                     {
                         "type": "web_url",
-                        "url": `https://eric-res-bot.herokuapp.com/reserve-table/page?messenger_extensions=true`,
+                        "url": `https://eric-res-bot.herokuapp.com/reserve-table/`,
                         "title":"DATBAN",
                          "webview_height_ratio": "tall",
                          "messenger_extensions":true,
