@@ -12,9 +12,11 @@ window.extAsyncInit = function () {
 
     MessengerExtensions.getContext('1554138315079604', // get Context:get psid of user open webview
         function success(thread_context) {
+              console.log('handleClickbutton');
             // success
             //set psid to input
             $("#psid").val(thread_context.psid);
+          
             handleClickButtonReserveTable();
         },
         function error(err) {
@@ -50,6 +52,7 @@ function validateInputFields() {
 
 
 function handleClickButtonReserveTable() {
+      console.log('handleClickbutton');
     $("#btnReserveTable").on("click", function (e) {
         let check = validateInputFields(); //return true or false
 
