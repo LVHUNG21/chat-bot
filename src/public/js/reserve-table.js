@@ -9,15 +9,14 @@
 window.extAsyncInit = function() {
     console.log('daoxong')
         // Khi SDK đã tải xong
-        MessengerExtensions.isInExtensionContext(function(isInExtension) {
-            if (isInExtension) {
-                // Nếu đang trong ngữ cảnh của Messenger Extension
+        window.extAsyncInit = function() {
+            // Khi SDK đã tải xong
+            MessengerExtensions.getContext('1554138315079604', function success(thread_context) {
                 getUser();
-            } else {
-                // Nếu không trong ngữ cảnh của Messenger Extension
-                console.log('Messenger Extensions are not enabled.');
-            }
-        });
+            }, function error(err) {
+                console.log('Messenger Extensions are not enabled:', err);
+            });
+        };
     };
 
     function getUser() {
