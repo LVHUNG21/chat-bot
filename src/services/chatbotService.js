@@ -1,7 +1,7 @@
 require('dotenv').config();
 import { response } from "express";
 import request from "request";
-const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+const PAGE_ACCESS_TOKEN = 'EAAC00P2yJ3kBALl6aCnZAF4ZAwg5DgqoZC5fByzj80fgBfSG4rI2jyNgNONSngWEV6KH4WX5ieaE314oInolXq5kjj43gRhUQERcgQZB59HkLOCAZBucWDjuATfrBWttMWzxr9v3zDK0W6t7KzZBCFS6P95zzxKeeiUt2EJRk916EzQp3oZByoG';
 const IMAGE_GET_STARTED = 'https://tse2.mm.bing.net/th?id=OIP.gKRH-WORVtuTkEQXfzJxeAHaE8&pid=Api&P=0'
 const IMAGE_MAIN_MENU_2 = 'https://bit.ly/eric-bot-2'
 const IMAGE_MAIN_MENU_3 = 'https://bit.ly/eric-bot-3'
