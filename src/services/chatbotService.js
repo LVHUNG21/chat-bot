@@ -602,7 +602,7 @@ let getButtonRooms = () => {
                         "url": `${process.env.URL_WEB_VIEW_ORDER}`,
                         "title":"DATBAN",
                          "webview_height_ratio": "tall",
-                        //  "messenger_extensions":true,
+                         "messenger_extensions":true,
                     },
                     {
                         "type":"postback",
