@@ -3,7 +3,7 @@
     if (d.getElementById(id)) { return; }
     js = d.createElement(s); js.id = id;
     js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
-    <script src="//connect.facebook.net/en_US/messenger.Extensions.js"></script>
+    // <script src="//connect.facebook.net/en_US/messenger.Extensions.js"></script>
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'Messenger'));
 
