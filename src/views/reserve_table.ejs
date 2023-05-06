@@ -18,6 +18,31 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.com/en_US/messenger.Extensions.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'Messenger'));
+    window.extAsyncInit = function() {
+      alert('loaded sdk');
+    };
+    function getUser() {
+      MessengerExtensions.getUserID(function success(uids) {
+        var psid = uids.psid;
+        alert(JSON.stringify(psid));
+      }, function error(err, errorMessage) {
+        alert(JSON.stringify(errorMessage));
+      });
+    }
+  </script>
+
+
     <!-- Load custom Javascript and CSS-->
     <link rel="stylesheet" href="/css/style.css">
     <script src="/js/reserve-table.js"></script>
