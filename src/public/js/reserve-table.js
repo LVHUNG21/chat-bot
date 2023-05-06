@@ -56,7 +56,7 @@ function handleClickButtonReserveTable() {
       console.log('handleClickbutton');
     $("#btnReserveTable").on("click", function (e) {
         let check = validateInputFields(); //return true or false
-
+        console.log('hunggbutton')
         let data = {
             psid: $("#psid").val(),
             customerName: $("#customerName").val(),
