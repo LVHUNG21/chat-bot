@@ -71,7 +71,7 @@ function handleClickButtonReserveTable() {
                 // an error occurred
                 console.log(err);
             });
-                  console.log('origin',window.location.origin);
+                //   console.log('origin',window.location.origin);
             //send data to node.js server 
             $.ajax({
                 url: `${window.location.origin}/reserve-table-ajax`,
