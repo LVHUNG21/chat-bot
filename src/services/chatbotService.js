@@ -226,7 +226,7 @@ let getMainMenuTemplate = () => {
                                     "url": `${process.env.URL_WEB_VIEW_ORDER}`,
                                     "title":"DATBAN",
                                      "webview_height_ratio": "tall",
-                                     "messenger_extension":true,
+                                     "messenger_extensions":true,
                             },
                         ],
                     },
