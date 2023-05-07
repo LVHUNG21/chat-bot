@@ -177,7 +177,7 @@ let sendGetstartedTemplate = () => {
 let handleSendMainMenu = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let response1 = getMainMenuTemplate();
+            let response1 = getMainMenuTemplate(sender_psid);
             //send text message
             await callSendAPI(sender_psid, response1)
             // send generic messagea
@@ -187,7 +187,7 @@ let handleSendMainMenu = (sender_psid) => {
         }
     })
 }
-let getMainMenuTemplate = () => {
+let getMainMenuTemplate = (sender_psid) => {
     let response = {
         "attachment": {
             "type": "template",
@@ -223,7 +223,7 @@ let getMainMenuTemplate = () => {
                         "buttons": [
                             {
                                     "type": "web_url",
-                                    "url": `${process.env.URL_WEB_VIEW_ORDER}`,
+                                    "url": `${process.env.URL_WEB_VIEW_ORDER}?senderID=${sender_psid}`,
                                     "title":"DATBAN",
                                      "webview_height_ratio": "tall",
                                      "messenger_extensions":true,

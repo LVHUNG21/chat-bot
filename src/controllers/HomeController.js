@@ -288,7 +288,7 @@ let setupProfile = async (req, res) => {
         "method": "POST",
         "json": request_body
     }, (err, res, body) => {
-        console.log('body:',body)
+        console.log('body:', body)
         if (!err) {
             console.log('setup user profile succeds')
         } else {
@@ -373,7 +373,7 @@ let handlePostReserveTable = async (req, res) => {
             message: "ok"
         });
     } catch (e) {
-        console.log('loi post reserve table:',e)
+        console.log('loi post reserve table:', e)
         return res.status(500).json({
             message: "server error"
         });
