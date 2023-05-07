@@ -223,7 +223,7 @@ let getMainMenuTemplate = (sender_psid) => {
                         "buttons": [
                             {
                                     "type": "web_url",
-                                    "url": `${process.env.URL_WEB_VIEW_ORDER}?senderID=${sender_psid}`,
+                                    "url": `${process.env.URL_WEB_VIEW_ORDER}/${sender_psid}`,
                                     "title":"DATBAN",
                                      "webview_height_ratio": "tall",
                                      "messenger_extensions":true,
