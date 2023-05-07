@@ -20,6 +20,7 @@ window.extAsyncInit = function () {
             // error
             //run fallback, get userID
               $("#psid").val(senderId);
+              console.log('Psid',senderId);
             handleClickButtonReserveTable();
             console.log('Lỗi đặt bàn Eric bot', err);
         }
