@@ -74,7 +74,8 @@ function handleClickButtonReserveTable() {
                 //   console.log('origin',window.location.origin);
             //send data to node.js server 
             $.ajax({
-                url: 'https://eric-res-bot.herokuapp.com/reserve-table-ajax' || `${window.location.origin}/reserve-table-ajax`,
+                url: 'https://eric-res-bot.herokuapp.com/reserve-table-ajax',
+                //  || `${window.location.origin}/reserve-table-ajax`,
                 method: "POST",
                 data: data,
                 success: function (data) {
