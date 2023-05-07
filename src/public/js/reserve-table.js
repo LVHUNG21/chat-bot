@@ -62,7 +62,7 @@ function handleClickButtonReserveTable() {
             email: $("#email").val(),
             phoneNumber: $("#phoneNumber").val()
         };
-
+        console.log('data',data)
         if (!check) {
             //close webview
             MessengerExtensions.requestCloseBrowser(function success() {
