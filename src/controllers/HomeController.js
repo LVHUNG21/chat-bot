@@ -367,7 +367,7 @@ let handlePostReserveTable = async (req, res) => {
             "text": `---Info about your lookup order---
             \nCustomer name: ${customerName}
             \nEmail address: ${req.body.email}
-            \nOrder number: ${req.body.orderNumber}
+            \nOrder number: ${req.body.phoneNumber}
             `
         };
 
