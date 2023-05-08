@@ -390,7 +390,7 @@ let handleReserveTable = (req, res) => {
 let handlePostReserveTable = async (req, res) => {
 
     try {
-        let username=await chatBotService.getUserName(rea.body.psid);
+        let username=await chatBotService.getUserName(req.body.psid);
         let data={
             username:username,
             email:req.body.email,
