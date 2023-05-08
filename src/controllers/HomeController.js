@@ -357,7 +357,7 @@ let handlePostReserveTable = async (req, res) => {
     try {
         let customerName = "";
         if (req.body.customerName === "") {
-            customerName = chatBotService.getUserName(req.body.psid);
+            customerName = await chatBotService.getUserName(req.body.psid);
         } else customerName = req.body.customerName;
 
         // I demo response with sample text
