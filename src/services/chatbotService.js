@@ -213,13 +213,7 @@ let sendGetstartedQuickRepli = () => {
             },
             {
                 "content_type": "text",
-                "title": "Dat ban",
-                "payload": "<POSTBACK_PAYLOAD>",
-                "image_url": "http://example.com/img/green.png"
-            },
-            {
-                "content_type": "text",
-                "title": "Huong dan su dung bot",
+                "title": "Huong dan SD",
                 "payload": "",
                 // "image_url":"http://example.com/img/green.png"
             }
