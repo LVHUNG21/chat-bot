@@ -63,7 +63,6 @@ await sheet.addRow({
 const newSheet = await doc.addSheet({ title: 'hot new sheet!' });
 await newSheet.delete();
 
-
 }
 async function getFollowers() {
     const response = await axios.get(
@@ -137,11 +136,21 @@ let postWebhook = (req, res) => {
     }
 
 };
-let handleMessage = (sender_psid, received_message) => {
+let handleMessage = async (sender_psid, received_message) => {
     let response;
 
-    // Checks if the message contains text
+    //check message for quick replies 
+        if(received_message.quick_reply && received_message.quick_reply.payload){
+               if(received_message.quick_reply.payload==='MAIN_MENU') {
+                 await chatBotService.handleSendMainMenu(sender_psid);
+               }
+            return ;
+        }
     if (received_message.text) {
+    // Checks if the message contains text
+        //check message for quick replies 
+
+
         // Create the payload for a basic text message, which
         // will be added to the body of our request to the Send API
         response = {
@@ -397,7 +406,6 @@ let handlePostReserveTable = async (req, res) => {
             phoneNumber:req.body.phoneNumber,
             customerName:req.body.customerName
         }
-        await writeDataToGoogleSheet(data);
         await writeDataToGoogleSheet(data);
         let customerName = "";
         if (req.body.customerName === "") {

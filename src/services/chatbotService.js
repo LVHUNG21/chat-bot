@@ -2,6 +2,7 @@ require('dotenv').config();
 import { response } from "express";
 import request from "request";
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+const IMAGE_GIF_WELCOME = 'https://media0.giphy.com/media/yB24kCiUGWGyeMNpvd/giphy.gif?cid=ecf05e47ozuvigmjrv8p06l5ruxvayfpievnwgecgrsncwy3&ep=v1_gifs_search&rid=giphy.gif&ct=g'
 const IMAGE_GET_STARTED = 'https://tse2.mm.bing.net/th?id=OIP.gKRH-WORVtuTkEQXfzJxeAHaE8&pid=Api&P=0'
 const IMAGE_MAIN_MENU_2 = 'https://bit.ly/eric-bot-2'
 const IMAGE_MAIN_MENU_3 = 'https://bit.ly/eric-bot-3'
@@ -28,27 +29,35 @@ const IMAGE_VIEW_MEAT = 'http://bit.ly/eric-bot-7'
 let callSendAPI = async (sender_psid, response) => {
     //sender_psid laf nguoi nhan tin nhan 
     // Construct the message body
-    let request_body = {
-        "recipient": {
-            "id": sender_psid
-        },
-        "message": response
-    };
-    await sendMarkReadMessage(sender_psid);
-    await sendTypingOn(sender_psid);
-    // Send the HTTP request to the Messenger Platform
-    request({
-        "uri": "https://graph.facebook.com/v9.0/me/messages",
-        "qs": { "access_token": process.env.PAGE_ACCESS_TOKEN },
-        "method": "POST",
-        "json": request_body
-    }, (err, res, body) => {
-        if (!err) {
-            console.log('message sent!')
-        } else {
-            console.error("Unable to send message:" + err);
+    return new Promise(async (resolve, reject) => {
+        try {
+            let request_body = {
+                "recipient": {
+                    "id": sender_psid
+                },
+                "message": response
+            };
+            await sendMarkReadMessage(sender_psid);
+            await sendTypingOn(sender_psid);
+            // Send the HTTP request to the Messenger Platform
+            request({
+                "uri": "https://graph.facebook.com/v9.0/me/messages",
+                "qs": { "access_token": process.env.PAGE_ACCESS_TOKEN },
+                "method": "POST",
+                "json": request_body
+            }, (err, res, body) => {
+                if (!err) {
+                    resolve('message sent!')  // resolve de out ra promise
+                } else {
+                    console.error("Unable to send message:" + err);
+                }
+            })
+        } catch (error) {
+                reject(error)
         }
     })
+
+
         ;
 }
 let sendTypingOn = (sender_psid,) => {
@@ -128,11 +137,16 @@ let handleGetStarted = (sender_psid) => {
         try {
             let username = await getUserName(sender_psid);
             let response1 = { "text": `OK.XIN CHAO ${username}  DEN VOI NHA HANG` }
-            let response2 = sendGetstartedTemplate();
+            // let response2 = sendGetstartedTemplate();
+
+            let response2 = getImageGetStartedTemplate();
+            let response3 = sendGetstartedQuickRepli();
+
             //send text message
             await callSendAPI(sender_psid, response1)
             // send generic message
             await callSendAPI(sender_psid, response2)
+            await callSendAPI(sender_psid, response3)
             resolve('done');
 
         } catch (e) {
@@ -170,6 +184,46 @@ let sendGetstartedTemplate = () => {
                 }]
             }
         }
+    }
+
+    return response;
+}
+let getImageGetStartedTemplate = () => {
+    let response = {
+        "attachment": {
+            "type": "image",
+            "payload": {
+                "url": IMAGE_GIF_WELCOME,
+                "is_reusable": true
+            }
+        }
+    }
+    return response;
+
+}
+let sendGetstartedQuickRepli = () => {
+    let response = {
+        "text": "Duoi day la lua chon cua nha hang",
+        "quick_replies": [
+            {
+                "content_type": "text",
+                "title": "MENU CHINH",
+                "payload": "MAIN_MENU",
+                // "image_url":"http://example.com/img/red.png"
+            },
+            {
+                "content_type": "text",
+                "title": "Dat ban",
+                "payload": "<POSTBACK_PAYLOAD>",
+                "image_url": "http://example.com/img/green.png"
+            },
+            {
+                "content_type": "text",
+                "title": "Huong dan su dung bot",
+                "payload": "",
+                // "image_url":"http://example.com/img/green.png"
+            }
+        ]
     }
 
     return response;
@@ -222,11 +276,11 @@ let getMainMenuTemplate = (sender_psid) => {
                         "image_url": IMAGE_MAIN_MENU_3,
                         "buttons": [
                             {
-                                    "type": "web_url",
-                                    "url": `${process.env.URL_WEB_VIEW_ORDER}/${sender_psid}`,
-                                    "title":"DATBAN",
-                                     "webview_height_ratio": "tall",
-                                     "messenger_extensions":true,
+                                "type": "web_url",
+                                "url": `${process.env.URL_WEB_VIEW_ORDER}/${sender_psid}`,
+                                "title": "DATBAN",
+                                "webview_height_ratio": "tall",
+                                "messenger_extensions": true,
                             },
                         ],
                     },
@@ -601,14 +655,14 @@ let getButtonRooms = () => {
                     {
                         "type": "web_url",
                         "url": `https://eric-res-bot.herokuapp.com/reserve-table/`,
-                        "title":"DATBAN",
-                         "webview_height_ratio": "tall",
-                         "messenger_extensions":true,
+                        "title": "DATBAN",
+                        "webview_height_ratio": "tall",
+                        "messenger_extensions": true,
                     },
                     {
-                        "type":"postback",
-                        "title":"Huong dan su dung bot",
-                        "payload":"GUIDE_TO_USE",
+                        "type": "postback",
+                        "title": "Huong dan su dung bot",
+                        "payload": "GUIDE_TO_USE",
                     }
 
                 ]
@@ -643,6 +697,6 @@ module.exports = {
     handleDetailViewFish: handleDetailViewFish,
     handleDetailViewMeat: handleDetailViewMeat,
     handleshowDetailRooms: handleshowDetailRooms,
-    callSendAPI:callSendAPI,
-    getUserName:getUserName,
+    callSendAPI: callSendAPI,
+    getUserName: getUserName,
 }
