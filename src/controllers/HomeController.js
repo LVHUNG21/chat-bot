@@ -55,7 +55,7 @@ const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id] or doc.sheetsBy
 await sheet.addRow({
     "Namefb":data.username,
     "Email":data.email,
-    "SDT":data.phoneNumber,
+    "SDT":`'`+data.phoneNumber, //dau ' giup sheet hieu sdt la string va lay ca so 0
     'Time':formatedDate,
     'Name':data.customerName,
 })
