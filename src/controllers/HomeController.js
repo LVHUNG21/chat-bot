@@ -10,6 +10,7 @@ const GOOGLE_SERVICE_ACCOUNT_EMAIL=process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
 const GOOGLE_PRIVATE_KEY=process.env.GOOGLE_PRIVATE_KEY;
 const PAGE_ID = '117732067976138';
 let getHomePage = (req, res) => {
+    console.log('checkhomepage')
     return res.render('homepage.ejs')
 };
 let getWebhook = (req, res) => {
